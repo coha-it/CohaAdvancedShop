@@ -18,39 +18,174 @@ class CohaCartButton extends Plugin
     {
         $service = $this->container->get('shopware_attribute.crud_service');
 
-        // --- Fields
+        // CB Cart Button Replace Text Active (0/1)
+        $service->update('s_articles_attributes', 'coha_cb_listing_active_replace_text', 'boolean', [
+            'label' => '[Cart Button: Listing] Replace Text',
+            'helpText' => 'If Active, the Cart Button will have a Text Replacing',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 115,
+            'custom' => true,
+        ]);
+
+        // CB Cart Button Replacing Text ("String")
+        $service->update('s_articles_attributes', 'coha_cb_listing_replacing_text', 'string', [
+            'label' => '[Cart Button: Listing] Replacing Text',
+            'helpText' => 'The Text to Replace the Cart Button with',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 116,
+            'custom' => true,
+        ]);
+
+        // CB Cart Button Replace Link Active (0/1)
+        $service->update('s_articles_attributes', 'coha_cb_listing_active_replace_link', 'boolean', [
+            'label' => '[Cart Button: Listing] Replace Link',
+            'helpText' => 'If Active, the Cart Button will have a Text Replacing',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 117,
+            'custom' => true,
+        ]);
+
+        // CB Cart Button Link Replacing Link ("String")
+        $service->update('s_articles_attributes', 'coha_cb_listing_replacing_link', 'string', [
+            'label' => '[Cart Button: Listing] Replacing Link',
+            'helpText' => 'The Cart-Button will have itself replaced with the custom Link in this Text-Field',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 118,
+            'custom' => true,
+        ]);
+
+        // CB Cart Button New Tab (0/1)
+        $service->update('s_articles_attributes', 'coha_cb_listing_new_tab', 'boolean', [
+            'label' => '[Cart Button: Listing] New Tab',
+            'helpText' => 'If Active - the Cart-Button will open the URL in a new Tab',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 119,
+            'custom' => true,
+        ]);
+
+        // CB Cart Button removed/hidden (0/1)
+        $service->update('s_articles_attributes', 'coha_cb_listing_removed_hidden', 'boolean', [
+            'label' => '[Cart Button: Listing] removed/hidden',
+            'helpText' => 'If Active, the Cart button will be Removed / Hidden',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 120,
+            'custom' => true,
+        ]);
+
+        // CB Cart Button disabled (0/1)
+        $service->update('s_articles_attributes', 'coha_cb_listing_disabled', 'boolean', [
+            'label' => '[Cart Button: Listing] disabled',
+            'helpText' => 'If Active, the Cart button will be disabled',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 121,
+            'custom' => true,
+        ]);
+
+        // - CB Cart Button Custom classes ("String")
+        $service->update('s_articles_attributes', 'coha_cb_listing_custom_classes', 'string', [
+            'label' => '[Cart Button: Listing] custom classes',
+            'helpText' => 'Custom Classes for the Cart Button',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 122,
+            'custom' => true,
+        ]);
+
+
         /*
-            - CCB (Coha Cart Button) 
-            - CB Cart Button Replace Text Active (0/1)
-            - CB Cart Button Text Replacing Text ("String")
-            - CB Cart Button Replace Link Active (0/1)
-            - CB Cart Button Link Replacing URL ("String")
-            - CB Cart Button Target "Parent / new Tab"
-            - CB Cart Button removed/hidden (0/1)
-            - CB Cart Button disabled (0/1)
+        * 
+        * DETAILS
+        *
         */
 
-        // // Custom URL
-        // $service->update('s_articles_supplier_attributes', 'coha_url', 'string', [
-        //     'label' => 'URL',
-        //     'helpText' => 'When set, it will replace the URL for each Banner-Slider',
-        //     'translatable' => true,
-        //     'displayInBackend' => true,
-        //     'position' => 20,
-        //     'custom' => true,
-        // ]);
+        // CB Cart Button Replace Text Active (0/1)
+        $service->update('s_articles_attributes', 'coha_cb_details_active_replace_text', 'boolean', [
+            'label' => '[Cart Button: Details] Replace Text',
+            'helpText' => 'If Active, the Cart Button will have a Text Replacing',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 155,
+            'custom' => true,
+        ]);
 
-        // // Open URL in New Tab
-        // $service->update('s_articles_supplier_attributes', 'coha_url_target_blank', 'boolean', [
-        //     'label' => 'URL open in New Tab',
-        //     'helpText' => 'Open the clicked URL in a new Window/Tab',
-        //     'translatable' => true,
-        //     'displayInBackend' => true,
-        //     'position' => 21,
-        //     'custom' => true,
-        // ]);
+        // CB Cart Button Replacing Text ("String")
+        $service->update('s_articles_attributes', 'coha_cb_details_replacing_text', 'string', [
+            'label' => '[Cart Button: Details] Replacing Text',
+            'helpText' => 'The Text to Replace the Cart Button with',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 156,
+            'custom' => true,
+        ]);
 
-        $this->update();
+        // CB Cart Button Replace Link Active (0/1)
+        $service->update('s_articles_attributes', 'coha_cb_details_active_replace_link', 'boolean', [
+            'label' => '[Cart Button: Details] Replace Link',
+            'helpText' => 'If Active, the Cart Button will have a Text Replacing',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 157,
+            'custom' => true,
+        ]);
+
+        // CB Cart Button Link Replacing Link ("String")
+        $service->update('s_articles_attributes', 'coha_cb_details_replacing_link', 'string', [
+            'label' => '[Cart Button: Details] Replacing Link',
+            'helpText' => 'The Cart-Button will have itself replaced with the custom Link in this Text-Field',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 158,
+            'custom' => true,
+        ]);
+
+        // CB Cart Button New Tab (0/1)
+        $service->update('s_articles_attributes', 'coha_cb_details_new_tab', 'boolean', [
+            'label' => '[Cart Button: Details] New Tab',
+            'helpText' => 'If Active - the Cart-Button will open the URL in a new Tab',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 159,
+            'custom' => true,
+        ]);
+
+        // CB Cart Button removed/hidden (0/1)
+        $service->update('s_articles_attributes', 'coha_cb_details_removed_hidden', 'boolean', [
+            'label' => '[Cart Button: Details] removed/hidden',
+            'helpText' => 'If Active, the Cart button will be Removed / Hidden',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 160,
+            'custom' => true,
+        ]);
+
+        // CB Cart Button disabled (0/1)
+        $service->update('s_articles_attributes', 'coha_cb_details_disabled', 'boolean', [
+            'label' => '[Cart Button: Details] disabled',
+            'helpText' => 'If Active, the Cart button will be disabled',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 161,
+            'custom' => true,
+        ]);
+
+        // - CB Cart Button Custom classes ("String")
+        $service->update('s_articles_attributes', 'coha_cb_details_custom_classes', 'string', [
+            'label' => '[Cart Button: Details] custom classes',
+            'helpText' => 'Custom Classes for the Cart Button',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 162,
+            'custom' => true,
+        ]);
+
+        // $this->update();
     }
 
     public function update(UpdateContext $context) {
@@ -66,12 +201,25 @@ class CohaCartButton extends Plugin
     public function uninstall(UninstallContext $context)
     {
         $service = $this->container->get('shopware_attribute.crud_service');
-        // $service->delete('s_articles_supplier_attributes', 'coha_is_quote_person');
-        // $service->delete('s_articles_supplier_attributes', 'coha_quote_classes');
-        // $service->delete('s_articles_supplier_attributes', 'coha_quote_html_tags');
-        // $service->delete('s_articles_supplier_attributes', 'coha_quote_content');
-        // $service->delete('s_articles_supplier_attributes', 'coha_url');
-        // $service->delete('s_articles_supplier_attributes', 'coha_url_target_blank');
+
+        // Delete Fields
+        $service->delete('s_articles_attributes', 'coha_cb_listing_active_replace_text');
+        $service->delete('s_articles_attributes', 'coha_cb_listing_replacing_text');
+        $service->delete('s_articles_attributes', 'coha_cb_listing_active_replace_link');
+        $service->delete('s_articles_attributes', 'coha_cb_listing_replacing_link');
+        $service->delete('s_articles_attributes', 'coha_cb_listing_new_tab');
+        $service->delete('s_articles_attributes', 'coha_cb_listing_removed_hidden');
+        $service->delete('s_articles_attributes', 'coha_cb_listing_disabled');
+        $service->delete('s_articles_attributes', 'coha_cb_listing_custom_classes');
+
+        $service->delete('s_articles_attributes', 'coha_cb_details_active_replace_text');
+        $service->delete('s_articles_attributes', 'coha_cb_details_replacing_text');
+        $service->delete('s_articles_attributes', 'coha_cb_details_active_replace_link');
+        $service->delete('s_articles_attributes', 'coha_cb_details_replacing_link');
+        $service->delete('s_articles_attributes', 'coha_cb_details_new_tab');
+        $service->delete('s_articles_attributes', 'coha_cb_details_removed_hidden');
+        $service->delete('s_articles_attributes', 'coha_cb_details_disabled');
+        $service->delete('s_articles_attributes', 'coha_cb_details_custom_classes');
     }
 
     public function addLessFiles(){
