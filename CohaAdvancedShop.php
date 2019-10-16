@@ -20,13 +20,113 @@ class CohaAdvancedShop extends Plugin
 
         // AS Advanced Shop: Article is unsaleable
         $service->update('s_articles_attributes', 'coha_as_unbuyable', 'boolean', [
-            'label' => '[CAS] Basic: Article Unbuyable',
+            'label' => '[CAS] Article unbuyable',
             'helpText' => 'If Active, the Product/Article is not buyable',
             'translatable' => true,
             'displayInBackend' => true,
-            'position' => 114,
+            'position' => 100,
             'custom' => true,
         ]);
+
+
+        // AS Advanced Shop: HidePricesOnListing
+        $service->update('s_articles_attributes', 'coha_as_listing_hide_prices', 'boolean', [
+            'label' => '[CAS] Hide Prices (in Listing)',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 101,
+            'custom' => true,
+        ]);
+
+        // AS Advanced Shop: HidePricesOnDetails
+        $service->update('s_articles_attributes', 'coha_as_details_hide_prices', 'boolean', [
+            'label' => '[CAS] Hide Prices (in Details)',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 102,
+            'custom' => true,
+        ]);
+
+        $service->update('s_articles_attributes', 'coha_as_hide_delivery', 'boolean', [
+            'label' => '[CAS] Hide Delivery',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 103,
+            'custom' => true,
+        ]);
+
+        $service->update('s_articles_attributes', 'coha_as_subtitle', 'string', [
+            'label' => '[CAS] Subtitle',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 104,
+            'custom' => true,
+        ]);
+
+        $service->update('s_articles_attributes', 'coha_as_shortdesc_active', 'boolean', [
+            'label' => '[CAS] Short-Description Activated',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 105,
+            'custom' => true,
+        ]);
+
+        $service->update('s_articles_attributes', 'coha_as_shortdesc_content', 'html', [
+            'label' => '[CAS] Short-Description Content',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'supportText' => 'If Activated, your Shortdescription will be shown on the listing-pages (instead of the default-description)',
+            'position' => 106,
+            'custom' => true,
+        ]);
+
+
+        $service->update('s_articles_attributes', 'coha_as_badge_termin', 'boolean', [
+            'label' => '[CAS] Termin "Badge"',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 107,
+            'custom' => true,
+        ]);
+
+        $service->update('s_articles_attributes', 'coha_as_badge_ausbildung', 'boolean', [
+            'label' => '[CAS] Ausbildung "Badge"',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 108,
+            'custom' => true,
+        ]);
+
+
+/*
+- start_event_date
+- end_event_date
+*/
+
+
+/*
+- activate_product_at
+- deactivate_product_at
+
+- ExtraListingButton 0/1 (fügt einen zweiten Button hinzu als is—secondary)
+- ExtraListingButton Text "string"
+- ExtraListingButton URL "string"
+- ExtraListingButton NewTab 0/1
+
+- ExtraDetailsButton 0/1 (fügt einen zweiten Button hinzu als is—secondary)
+- ExtraDetailsButton Text "string"
+- ExtraDetailsButton URL "string"
+- ExtraDetailsButton NewTab 0/1
+
+*/
+
+
+        /*
+        
+        
+        LISTING BUTTONS
+        
+        */
 
         // AS Advanced Shop: Replace Text Active (0/1)
         $service->update('s_articles_attributes', 'coha_as_listing_replace_text_active', 'boolean', [
@@ -200,6 +300,7 @@ class CohaAdvancedShop extends Plugin
         ]);
 
         // $this->update();
+
     }
 
     public function update(UpdateContext $context) {
@@ -215,9 +316,18 @@ class CohaAdvancedShop extends Plugin
     public function uninstall(UninstallContext $context)
     {
         $service = $this->container->get('shopware_attribute.crud_service');
+        // Delete The Fields Fields
 
-        // Delete Fields
+        // Basics
         $service->delete('s_articles_attributes', 'coha_as_unbuyable');
+        $service->delete('s_articles_attributes', 'coha_as_listing_hide_prices');
+        $service->delete('s_articles_attributes', 'coha_as_details_hide_prices');
+        $service->delete('s_articles_attributes', 'coha_as_hide_delivery');
+        $service->delete('s_articles_attributes', 'coha_as_shortdesc_active');
+        $service->delete('s_articles_attributes', 'coha_as_shortdesc_content');
+        $service->delete('s_articles_attributes', 'coha_as_subtitle');
+        $service->delete('s_articles_attributes', 'coha_as_badge_termin');
+        $service->delete('s_articles_attributes', 'coha_as_badge_ausbildung');
 
         // Listing Fields
         $service->delete('s_articles_attributes', 'coha_as_listing_replace_text_active');
