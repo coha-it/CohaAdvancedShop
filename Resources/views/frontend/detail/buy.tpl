@@ -2,9 +2,9 @@
 
 {* The Formular *}
 {block name="frontend_detail_buy"}
-    {if $sArticle.attributes.core->get('coha_cb_details_active_replace_link')}
-        {$sUrl      = $sArticle.attributes.core->get('coha_cb_details_replacing_link')}
-        {$bNewTab   = $sArticle.attributes.core->get('coha_cb_details_new_tab')}
+    {if $sArticle.attributes.core->get('coha_as_details_replace_link_active')}
+        {$sUrl      = $sArticle.attributes.core->get('coha_as_details_replace_link')}
+        {$bNewTab   = $sArticle.attributes.core->get('coha_as_details_new_tab')}
         <form class="buybox--form"
             data-add-article="false"
             action="{$sUrl}"
@@ -36,18 +36,18 @@
 
 {* Quantity selection *}
 {block name='frontend_detail_buy_quantity'}
-    {if !$sArticle.attributes.core->get('coha_cb_details_removed_hidden')}
+    {if !$sArticle.attributes.core->get('coha_as_details_removed_hidden')}
         {$smarty.block.parent}
     {/if}
 {/block}
 
 {* "Buy now" button *}
 {block name="frontend_detail_buy_button"}
-    {if !$sArticle.attributes.core->get('coha_cb_details_removed_hidden')}
-        {$bReplaceText      = $sArticle.attributes.core->get('coha_cb_details_active_replace_text')}
-        {$sReplaceText      = $sArticle.attributes.core->get('coha_cb_details_replacing_text')}
-        {$sExtraClasses     = $sArticle.attributes.core->get('coha_cb_details_custom_classes')}
-        {$bDisabled         = $sArticle.attributes.core->get('coha_cb_listing_disabled')}
+    {if !$sArticle.attributes.core->get('coha_as_details_removed_hidden')}
+        {$bReplaceText      = $sArticle.attributes.core->get('coha_as_details_replace_text_active')}
+        {$sReplaceText      = $sArticle.attributes.core->get('coha_as_details_replace_text')}
+        {$sExtraClasses     = $sArticle.attributes.core->get('coha_as_details_custom_classes')}
+        {$bDisabled         = $sArticle.attributes.core->get('coha_as_listing_disabled')}
 
         {if $sArticle.sConfigurator && !$activeConfiguratorSelection}
             <button 

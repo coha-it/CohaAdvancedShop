@@ -1,9 +1,9 @@
 {extends file="parent:frontend/listing/product-box/button-buy.tpl"}
 
 {block name="frontend_listing_product_box_button_buy_form"}
-        {$bReplaceUrl   = $sArticle.attributes.core->get('coha_cb_listing_active_replace_link')}
-        {$sReplaceUrl   = $sArticle.attributes.core->get('coha_cb_listing_replacing_link')}
-        {$bNewTab       = $sArticle.attributes.core->get('coha_cb_listing_new_tab')}
+        {$bReplaceUrl   = $sArticle.attributes.core->get('coha_as_listing_replace_link_active')}
+        {$sReplaceUrl   = $sArticle.attributes.core->get('coha_as_listing_replace_link')}
+        {$bNewTab       = $sArticle.attributes.core->get('coha_as_listing_new_tab')}
 
         {if $bReplaceUrl}
             <form class="buybox--form"
@@ -33,19 +33,19 @@
 
         {/if}
 
-            {if !$sArticle.attributes.core->get('coha_cb_listing_removed_hidden')}
+            {if !$sArticle.attributes.core->get('coha_as_listing_removed_hidden')}
                 {block name="frontend_listing_product_box_button_buy_button"}
                     <button 
-                    class="buybox--button block btn is--primary is--icon-right is--center is--large {$sArticle.attributes.core->get('coha_cb_listing_custom_classes')}" 
+                    class="buybox--button block btn is--primary is--icon-right is--center is--large {$sArticle.attributes.core->get('coha_as_listing_custom_classes')}" 
                     aria-label="{s namespace="frontend/listing/box_article" name="ListingBuyActionAddText"}{/s}"
-                    {if $sArticle.attributes.core->get('coha_cb_listing_disabled')}
+                    {if $sArticle.attributes.core->get('coha_as_listing_disabled')}
                     disabled
                     {/if}
                     >
                         {block name="frontend_listing_product_box_button_buy_button_text"}
                             {* Replace Text if Active *}
-                            {if $sArticle.attributes.core->get('coha_cb_listing_active_replace_text')}
-                                {$sArticle.attributes.core->get('coha_cb_listing_replacing_text')}
+                            {if $sArticle.attributes.core->get('coha_as_listing_replace_text_active')}
+                                {$sArticle.attributes.core->get('coha_as_listing_replace_text')}
                             {else}
                                 {s namespace="frontend/listing/box_article" name="ListingBuyActionAdd"}{/s}
                             {/if}            
