@@ -2,19 +2,27 @@
 
 {* The Formular *}
 {block name="frontend_detail_buy"}
-    {if $sArticle.attributes.core->get('coha_as_details_replace_link_active')}
+    {$bReplaceLink  = $sArticle.attributes.core->get('coha_as_details_replace_link_active')}
+    {$bUnbuyable    = $sArticle.attributes.core->get('coha_as_unbuyable')}
+
+    {if $bUnbuyable || $bReplaceLink}
         {$sUrl      = $sArticle.attributes.core->get('coha_as_details_replace_link')}
         {$bNewTab   = $sArticle.attributes.core->get('coha_as_details_new_tab')}
         <form class="buybox--form"
             data-add-article="false"
-            action="{$sUrl}"
+            {if $bReplaceLink}
+                action="{$sUrl}"
+            {elseif $bUnbuyable}
+                action="{$sArticle.linkDetails}"
+            {/if}
+
             {if $bNewTab}
                 target="_blank"
                 onsubmit="event.preventDefault(); window.open('{$sUrl}','_blank');"
             {else}
                 onsubmit="event.preventDefault(); window.location.href='{$sUrl}'; "
             {/if}
-            >
+            >        
     {else}
         <form 
             name="sAddToBasket" 
@@ -36,18 +44,27 @@
 
 {* Quantity selection *}
 {block name='frontend_detail_buy_quantity'}
-    {if !$sArticle.attributes.core->get('coha_as_details_removed_hidden')}
+    {$bRemoved      = $sArticle.attributes.core->get('coha_as_details_removed_hidden')}
+    {$bUnbuyable    = $sArticle.attributes.core->get('coha_as_unbuyable')}
+
+    {if !$bRemoved && !$bUnbuyable}
         {$smarty.block.parent}
     {/if}
+
 {/block}
 
 {* "Buy now" button *}
 {block name="frontend_detail_buy_button"}
-    {if !$sArticle.attributes.core->get('coha_as_details_removed_hidden')}
+    {$bRemoved      = $sArticle.attributes.core->get('coha_as_details_removed_hidden')}
+    {$bReplaceLink  = $sArticle.attributes.core->get('coha_as_details_replace_link_active')}
+
+    {if $bRemoved || ($bUnbuyable && !$bReplaceLink) }
+        <!-- No Cart Button -->
+    {else}
         {$bReplaceText      = $sArticle.attributes.core->get('coha_as_details_replace_text_active')}
         {$sReplaceText      = $sArticle.attributes.core->get('coha_as_details_replace_text')}
         {$sExtraClasses     = $sArticle.attributes.core->get('coha_as_details_custom_classes')}
-        {$bDisabled         = $sArticle.attributes.core->get('coha_as_listing_disabled')}
+        {$bDisabled         = $sArticle.attributes.core->get('coha_as_details_disabled')}
 
         {if $sArticle.sConfigurator && !$activeConfiguratorSelection}
             <button 

@@ -1,14 +1,20 @@
 {extends file="parent:frontend/listing/product-box/button-buy.tpl"}
 
 {block name="frontend_listing_product_box_button_buy_form"}
+        {$bUnbuyable    = $sArticle.attributes.core->get('coha_as_unbuyable')}
         {$bReplaceUrl   = $sArticle.attributes.core->get('coha_as_listing_replace_link_active')}
         {$sReplaceUrl   = $sArticle.attributes.core->get('coha_as_listing_replace_link')}
         {$bNewTab       = $sArticle.attributes.core->get('coha_as_listing_new_tab')}
 
-        {if $bReplaceUrl}
+        {if $bReplaceUrl || $bUnbuyable}
             <form class="buybox--form"
                 data-add-article="false"
-                action="{$sReplaceUrl}"
+                {if $bReplaceUrl}
+                    action="{$sReplaceUrl}"
+                {elseif $bUnbuyable}
+                    action="{$sArticle.linkDetails}"
+                {/if}
+
                 {if $bNewTab}
                 target="_blank"
                 {/if}
