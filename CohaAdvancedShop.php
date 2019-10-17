@@ -14,97 +14,13 @@ use Shopware\Components\Plugin\Context\ActivateContext;
 class CohaAdvancedShop extends Plugin
 {
 
-    public function install(InstallContext $context)
-    {
-        $service = $this->container->get('shopware_attribute.crud_service');
-
-        // AS Advanced Shop: Article is unsaleable
-        $service->update('s_articles_attributes', 'coha_as_unbuyable', 'boolean', [
-            'label' => '[CAS] Article unbuyable',
-            'helpText' => 'If Active, the Product/Article is not buyable',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 100,
-            'custom' => true,
-        ]);
-
-
-        // AS Advanced Shop: HidePricesOnListing
-        $service->update('s_articles_attributes', 'coha_as_listing_hide_prices', 'boolean', [
-            'label' => '[CAS] Hide Prices (in Listing)',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 101,
-            'custom' => true,
-        ]);
-
-        // AS Advanced Shop: HidePricesOnDetails
-        $service->update('s_articles_attributes', 'coha_as_details_hide_prices', 'boolean', [
-            'label' => '[CAS] Hide Prices (in Details)',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 102,
-            'custom' => true,
-        ]);
-
-        $service->update('s_articles_attributes', 'coha_as_hide_delivery', 'boolean', [
-            'label' => '[CAS] Hide Delivery',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 103,
-            'custom' => true,
-        ]);
-
-        $service->update('s_articles_attributes', 'coha_as_subtitle', 'string', [
-            'label' => '[CAS] Subtitle',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 104,
-            'custom' => true,
-        ]);
-
-        $service->update('s_articles_attributes', 'coha_as_shortdesc_active', 'boolean', [
-            'label' => '[CAS] Short-Description Activated',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 105,
-            'custom' => true,
-        ]);
-
-        $service->update('s_articles_attributes', 'coha_as_shortdesc_content', 'html', [
-            'label' => '[CAS] Short-Description Content',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'supportText' => 'If Activated, your Shortdescription will be shown on the listing-pages (instead of the default-description)',
-            'position' => 106,
-            'custom' => true,
-        ]);
-
-
-        $service->update('s_articles_attributes', 'coha_as_badge_termin', 'boolean', [
-            'label' => '[CAS] Termin "Badge"',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 107,
-            'custom' => true,
-        ]);
-
-        $service->update('s_articles_attributes', 'coha_as_badge_ausbildung', 'boolean', [
-            'label' => '[CAS] Ausbildung "Badge"',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 108,
-            'custom' => true,
-        ]);
-
-
 /*
-- start_event_date
-- end_event_date
-*/
 
+- is_timeevent (Termin/Ausbildung)
 
-/*
+- hightlight_event_from
+- hightlight_event_till
+
 - activate_product_at
 - deactivate_product_at
 
@@ -120,191 +36,79 @@ class CohaAdvancedShop extends Plugin
 
 */
 
-
-        /*
-        
-        
-        LISTING BUTTONS
-        
-        */
-
-        // AS Advanced Shop: Replace Text Active (0/1)
-        $service->update('s_articles_attributes', 'coha_as_listing_replace_text_active', 'boolean', [
-            'label' => '[CAS] Listing-Button: Replace Text Activated',
-            'helpText' => 'If Active, the Cart Button will have a Text Replacing',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 115,
-            'custom' => true,
-        ]);
-
-        // AS Advanced Shop: Replacing Text ("String")
-        $service->update('s_articles_attributes', 'coha_as_listing_replace_text', 'string', [
-            'label' => '[CAS] Listing-Button: Replacing Text',
-            'helpText' => 'The Text to Replace the Cart Button with',
-            'supportText' => 'If Activated, your text will be shown on the listing-pages (instead of the default-text)',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 116,
-            'custom' => true,
-        ]);
-
-        // AS Advanced Shop: Replace Link Active (0/1)
-        $service->update('s_articles_attributes', 'coha_as_listing_replace_link_active', 'boolean', [
-            'label' => '[CAS] Listing-Button: Replace Link Activated',
-            'helpText' => 'If Active, the Cart Button will have a Text Replacing',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 117,
-            'custom' => true,
-        ]);
-
-        // AS Advanced Shop: Link Replacing Link ("String")
-        $service->update('s_articles_attributes', 'coha_as_listing_replace_link', 'string', [
-            'label' => '[CAS] Listing-Button: Replacing Link',
-            'helpText' => 'The Cart-Button will have itself replaced with the custom Link in this Text-Field',
-            'supportText' => 'If Activated, the button on the details page will guide the user to your custom-url',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 118,
-            'custom' => true,
-        ]);
-
-        // AS Advanced Shop: New Tab (0/1)
-        $service->update('s_articles_attributes', 'coha_as_listing_new_tab', 'boolean', [
-            'label' => '[CAS] Listing-Button: New Tab',
-            'helpText' => 'If Active - the Cart-Button will open the URL in a new Tab',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 119,
-            'custom' => true,
-        ]);
-
-        // AS Advanced Shop: removed/hidden (0/1)
-        $service->update('s_articles_attributes', 'coha_as_listing_removed_hidden', 'boolean', [
-            'label' => '[CAS] Listing-Button: removed/hidden',
-            'helpText' => 'If Active, the Cart button will be Removed / Hidden',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 120,
-            'custom' => true,
-        ]);
-
-        // AS Advanced Shop: disabled (0/1)
-        $service->update('s_articles_attributes', 'coha_as_listing_disabled', 'boolean', [
-            'label' => '[CAS] Listing-Button: disabled',
-            'helpText' => 'If Active, the Cart button will be disabled',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 121,
-            'custom' => true,
-        ]);
-
-        // - AS Advanced Shop: Custom classes ("String")
-        $service->update('s_articles_attributes', 'coha_as_listing_custom_classes', 'string', [
-            'label' => '[CAS] Listing-Button: custom classes',
-            'helpText' => 'Custom Classes for the Cart Button',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 122,
-            'custom' => true,
-        ]);
+    public function getAttributes()
+    {
+        // Return the Attributes as Array
+        return [
+            [ 'name' => 'coha_as_unbuyable',                        'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Article unbuyable', 'helpText' => 'If Active, the Product/Article is not buyable' ],
+            [ 'name' => 'coha_as_listing_hide_prices',              'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Hide Prices (in Listing)', ],
+            [ 'name' => 'coha_as_details_hide_prices',              'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Hide Prices (in Details)', ],
+            [ 'name' => 'coha_as_hide_delivery',                    'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Hide Delivery', ],
+            [ 'name' => 'coha_as_subtitle_active',                  'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Subtitle Activated', ],
+            [ 'name' => 'coha_as_subtitle_content',                 'type' => 'string',             'label' => '[COHA: Advanced Shop] Subtitle Content', ],
+            [ 'name' => 'coha_as_shortdesc_active',                 'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Short-Description Activated', ],
+            [ 'name' => 'coha_as_shortdesc_content',                'type' => 'html',               'label' => '[COHA: Advanced Shop] Short-Description Content', 'supportText' => 'If Activated, your Shortdescription will be shown on the listing-pages (instead of the default-description)'],
+            [ 'name' => 'coha_as_badge_termin',                     'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Termin "Badge"', ],
+            [ 'name' => 'coha_as_badge_ausbildung',                 'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Ausbildung "Badge"', ],
+            [ 'name' => 'coha_as_listing_replace_text_active',      'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Listing-Button: Replace Text Activated', 'helpText' => 'If Active, the Cart Button will have a Text Replacing',],
+            [ 'name' => 'coha_as_listing_replace_text',             'type' => 'string',             'label' => '[COHA: Advanced Shop] Listing-Button: Replacing Text','helpText' => 'The Text to Replace the Cart Button with', 'supportText' => 'If Activated, your text will be shown on the listing-pages (instead of the default-text)',],
+            [ 'name' => 'coha_as_listing_replace_link_active',      'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Listing-Button: Replace Link Activated', 'helpText' => 'If Active, the Cart Button will have a Text Replacing',],
+            [ 'name' => 'coha_as_listing_replace_link',             'type' => 'string',             'label' => '[COHA: Advanced Shop] Listing-Button: Replacing Link','helpText' => 'The Cart-Button will have itself replaced with the custom Link in this Text-Field', 'supportText' => 'If Activated, the button on the details page will guide the user to your custom-url',],
+            [ 'name' => 'coha_as_listing_new_tab',                  'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Listing-Button: New Tab', 'helpText' => 'If Active - the Cart-Button will open the URL in a new Tab',],
+            [ 'name' => 'coha_as_listing_removed_hidden',           'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Listing-Button: removed/hidden', 'helpText' => 'If Active, the Cart button will be Removed / Hidden',],
+            [ 'name' => 'coha_as_listing_disabled',                 'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Listing-Button: disabled', 'helpText' => 'If Active, the Cart button will be disabled',],
+            [ 'name' => 'coha_as_listing_custom_classes',           'type' => 'string',             'label' => '[COHA: Advanced Shop] Listing-Button: custom classes', 'helpText' => 'Custom Classes for the Cart Button',],
+            [ 'name' => 'coha_as_details_replace_text_active',      'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Details-Button: Replace Text Activated', 'helpText' => 'If Active, the Cart Button will have a Text Replacing',],
+            [ 'name' => 'coha_as_details_replace_text',             'type' => 'string',             'label' => '[COHA: Advanced Shop] Details-Button: Replacing Text','helpText' => 'The Text to Replace the Cart Button with', 'supportText' => 'If Activated, your text will be shown on the details-page (instead of the default-text)',],
+            [ 'name' => 'coha_as_details_replace_link_active',      'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Details-Button: Replace Link Activated', 'helpText' => 'If Active, the Cart Button will have a Text Replacing',],
+            [ 'name' => 'coha_as_details_replace_link',             'type' => 'string',             'label' => '[COHA: Advanced Shop] Details-Button: Replacing Link','helpText' => 'The Cart-Button will have itself replaced with the custom Link in this Text-Field', 'supportText' => 'If Activated, the button on the details page will guide the user to your custom-url',],
+            [ 'name' => 'coha_as_details_new_tab',                  'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Details-Button: New Tab', 'helpText' => 'If Active - the Cart-Button will open the URL in a new Tab',],
+            [ 'name' => 'coha_as_details_removed_hidden',           'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Details-Button: removed/hidden', 'helpText' => 'If Active, the Cart button will be Removed / Hidden',],
+            [ 'name' => 'coha_as_details_disabled',                 'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Details-Button: disabled', 'helpText' => 'If Active, the Cart button will be disabled',],
+            [ 'name' => 'coha_as_details_custom_classes',           'type' => 'string',             'label' => '[COHA: Advanced Shop] Details-Button: custom classes', 'helpText' => 'Custom Classes for the Cart Button',],
+            [ 'name' => 'coha_as_test',                             'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Details-Button: disabled', 'helpText' => 'If Active, the Cart button will be disabled',],
+        ];
+    }
 
 
-        /*
-        * 
-        * DETAILS
-        *
-        */
 
-        // AS Advanced Shop: Replace Text Active (0/1)
-        $service->update('s_articles_attributes', 'coha_as_details_replace_text_active', 'boolean', [
-            'label' => '[CAS] Details-Button: Replace Text Activated',
-            'helpText' => 'If Active, the Cart Button will have a Text Replacing',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 155,
-            'custom' => true,
-        ]);
+    public function install(InstallContext $context)
+    {
+        // Get variables
+        $service        = $this->container->get('shopware_attribute.crud_service');
+        $aAttributes    = $this->getAttributes();
 
-        // AS Advanced Shop: Replacing Text ("String")
-        $service->update('s_articles_attributes', 'coha_as_details_replace_text', 'string', [
-            'label' => '[CAS] Details-Button: Replacing Text',
-            'helpText' => 'The Text to Replace the Cart Button with',
-            'supportText' => 'If Activated, your text will be shown on the details-page (instead of the default-text)',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 156,
-            'custom' => true,
-        ]);
+        for ($i=0; $i < count($aAttributes); $i++)
+        { 
+            // Set Attribute
+            $aAttribute = $aAttributes[$i];
 
-        // AS Advanced Shop: Replace Link Active (0/1)
-        $service->update('s_articles_attributes', 'coha_as_details_replace_link_active', 'boolean', [
-            'label' => '[CAS] Details-Button: Replace Link Activated',
-            'helpText' => 'If Active, the Cart Button will have a Text Replacing',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 157,
-            'custom' => true,
-        ]);
+            // Collect Advanced Array
+            $aAdvanced = [];
+            $aAdvanced['label']                     = $aAttribute['label'] ?? '';
+            $aAdvanced['translatable']              = $aAttribute['translatable'] ?? true;
+            $aAdvanced['displayInBackend']          = $aAttribute['displayInBackend'] ?? true;
+            $aAdvanced['custom']                    = $aAttribute['custom'] ?? true;
+            $aAdvanced['position']                  = ($i + 150);
 
-        // AS Advanced Shop: Link Replacing Link ("String")
-        $service->update('s_articles_attributes', 'coha_as_details_replace_link', 'string', [
-            'label' => '[CAS] Details-Button: Replacing Link',
-            'helpText' => 'The Cart-Button will have itself replaced with the custom Link in this Text-Field',
-            'supportText' => 'If Activated, the button on the details page will guide the user to your custom-url',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 158,
-            'custom' => true,
-        ]);
-
-        // AS Advanced Shop: New Tab (0/1)
-        $service->update('s_articles_attributes', 'coha_as_details_new_tab', 'boolean', [
-            'label' => '[CAS] Details-Button: New Tab',
-            'helpText' => 'If Active - the Cart-Button will open the URL in a new Tab',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 159,
-            'custom' => true,
-        ]);
-
-        // AS Advanced Shop: removed/hidden (0/1)
-        $service->update('s_articles_attributes', 'coha_as_details_removed_hidden', 'boolean', [
-            'label' => '[CAS] Details-Button: removed/hidden',
-            'helpText' => 'If Active, the Cart button will be Removed / Hidden',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 160,
-            'custom' => true,
-        ]);
-
-        // AS Advanced Shop: disabled (0/1)
-        $service->update('s_articles_attributes', 'coha_as_details_disabled', 'boolean', [
-            'label' => '[CAS] Details-Button: disabled',
-            'helpText' => 'If Active, the Cart button will be disabled',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 161,
-            'custom' => true,
-        ]);
-
-        // - AS Advanced Shop: Custom classes ("String")
-        $service->update('s_articles_attributes', 'coha_as_details_custom_classes', 'string', [
-            'label' => '[CAS] Details-Button: custom classes',
-            'helpText' => 'Custom Classes for the Cart Button',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 162,
-            'custom' => true,
-        ]);
+            $service->update(
+                's_articles_attributes',
+                $aAttribute['name'],
+                $aAttribute['type'],
+                $aAdvanced
+            );
+        }
 
         // $this->update();
 
     }
 
+
     public function update(UpdateContext $context) {
         $service = $this->container->get('shopware_attribute.crud_service');
+
+        // $context->scheduleClearCache(ActivateContext::CACHE_LIST_ALL);
+
     }
 
     // On Activation
@@ -315,39 +119,23 @@ class CohaAdvancedShop extends Plugin
 
     public function uninstall(UninstallContext $context)
     {
+        // Get variables
         $service = $this->container->get('shopware_attribute.crud_service');
+        $aAttributes    = $this->getAttributes();
+
         // Delete The Fields Fields
+        for ($i=0; $i < count($aAttributes); $i++)
+        { 
+            // Set Attribute
+            $aAttribute = $aAttributes[$i];
 
-        // Basics
-        $service->delete('s_articles_attributes', 'coha_as_unbuyable');
-        $service->delete('s_articles_attributes', 'coha_as_listing_hide_prices');
-        $service->delete('s_articles_attributes', 'coha_as_details_hide_prices');
-        $service->delete('s_articles_attributes', 'coha_as_hide_delivery');
-        $service->delete('s_articles_attributes', 'coha_as_shortdesc_active');
-        $service->delete('s_articles_attributes', 'coha_as_shortdesc_content');
-        $service->delete('s_articles_attributes', 'coha_as_subtitle');
-        $service->delete('s_articles_attributes', 'coha_as_badge_termin');
-        $service->delete('s_articles_attributes', 'coha_as_badge_ausbildung');
-
-        // Listing Fields
-        $service->delete('s_articles_attributes', 'coha_as_listing_replace_text_active');
-        $service->delete('s_articles_attributes', 'coha_as_listing_replace_text');
-        $service->delete('s_articles_attributes', 'coha_as_listing_replace_link_active');
-        $service->delete('s_articles_attributes', 'coha_as_listing_replace_link');
-        $service->delete('s_articles_attributes', 'coha_as_listing_new_tab');
-        $service->delete('s_articles_attributes', 'coha_as_listing_removed_hidden');
-        $service->delete('s_articles_attributes', 'coha_as_listing_disabled');
-        $service->delete('s_articles_attributes', 'coha_as_listing_custom_classes');
-
-        // Details Fields
-        $service->delete('s_articles_attributes', 'coha_as_details_replace_text_active');
-        $service->delete('s_articles_attributes', 'coha_as_details_replace_text');
-        $service->delete('s_articles_attributes', 'coha_as_details_replace_link_active');
-        $service->delete('s_articles_attributes', 'coha_as_details_replace_link');
-        $service->delete('s_articles_attributes', 'coha_as_details_new_tab');
-        $service->delete('s_articles_attributes', 'coha_as_details_removed_hidden');
-        $service->delete('s_articles_attributes', 'coha_as_details_disabled');
-        $service->delete('s_articles_attributes', 'coha_as_details_custom_classes');
+            // Delete Attribute
+            $service->delete(
+                's_articles_attributes',
+                $aAttribute['name']
+            );
+        }
+        
     }
 
     public function addLessFiles(){
