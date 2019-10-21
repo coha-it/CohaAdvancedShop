@@ -18,3 +18,9 @@
         {$smarty.block.parent}
     {/if}
 {/block}
+
+{block name='frontend_detail_buy_laststock'}
+	{if !$sArticle.attributes.core->get('coha_as_unbuyable')}
+		{$smarty.block.parent}
+	{/if}
+{/block}
