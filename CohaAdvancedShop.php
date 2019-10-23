@@ -16,23 +16,21 @@ class CohaAdvancedShop extends Plugin
 
 /*
 
-- is_timeevent (Termin/Ausbildung)
+x hightlight_event_from
+x hightlight_event_till
 
-- hightlight_event_from
-- hightlight_event_till
+x activate_product_at
+x deactivate_product_at
 
-- activate_product_at
-- deactivate_product_at
+x ExtraListingButton 0/1 (fügt einen zweiten Button hinzu als is—secondary)
+x ExtraListingButton Text "string"
+x ExtraListingButton URL "string"
+x ExtraListingButton NewTab 0/1
 
-- ExtraListingButton 0/1 (fügt einen zweiten Button hinzu als is—secondary)
-- ExtraListingButton Text "string"
-- ExtraListingButton URL "string"
-- ExtraListingButton NewTab 0/1
-
-- ExtraDetailsButton 0/1 (fügt einen zweiten Button hinzu als is—secondary)
-- ExtraDetailsButton Text "string"
-- ExtraDetailsButton URL "string"
-- ExtraDetailsButton NewTab 0/1
+x ExtraDetailsButton 0/1 (fügt einen zweiten Button hinzu als is—secondary)
+x ExtraDetailsButton Text "string"
+x ExtraDetailsButton URL "string"
+x ExtraDetailsButton NewTab 0/1
 
 */
 
@@ -40,6 +38,9 @@ class CohaAdvancedShop extends Plugin
     {
         // Return the Attributes as Array
         return [
+         // [ 'name' => 'coha_as_is_timeevent',                     'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Is Time-Event', 'helpText' => 'Check if this is a time-based event. For Example "(Termin/Ausbildung)"' ],
+            [ 'name' => 'coha_as_badge_termin',                     'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Termin "Badge"', ],
+            [ 'name' => 'coha_as_badge_ausbildung',                 'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Ausbildung "Badge"', ],
             [ 'name' => 'coha_as_unbuyable',                        'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Article unbuyable', 'helpText' => 'If Active, the Product/Article is not buyable' ],
             [ 'name' => 'coha_as_listing_hide_prices',              'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Hide Prices (in Listing)', ],
             [ 'name' => 'coha_as_details_hide_prices',              'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Hide Prices (in Details)', ],
@@ -48,8 +49,6 @@ class CohaAdvancedShop extends Plugin
             [ 'name' => 'coha_as_subtitle_content',                 'type' => 'string',             'label' => '[COHA: Advanced Shop] Subtitle Content', ],
             [ 'name' => 'coha_as_shortdesc_active',                 'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Short-Description Activated', ],
             [ 'name' => 'coha_as_shortdesc_content',                'type' => 'html',               'label' => '[COHA: Advanced Shop] Short-Description Content', 'supportText' => 'If Activated, your Shortdescription will be shown on the listing-pages (instead of the default-description)'],
-            [ 'name' => 'coha_as_badge_termin',                     'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Termin "Badge"', ],
-            [ 'name' => 'coha_as_badge_ausbildung',                 'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Ausbildung "Badge"', ],
             [ 'name' => 'coha_as_listing_replace_text_active',      'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Listing-Button: Replace Text Activated', 'helpText' => 'If Active, the Cart Button will have a Text Replacing',],
             [ 'name' => 'coha_as_listing_replace_text',             'type' => 'string',             'label' => '[COHA: Advanced Shop] Listing-Button: Replacing Text','helpText' => 'The Text to Replace the Cart Button with', 'supportText' => 'If Activated, your text will be shown on the listing-pages (instead of the default-text)',],
             [ 'name' => 'coha_as_listing_replace_link_active',      'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Listing-Button: Replace Link Activated', 'helpText' => 'If Active, the Cart Button will have a Text Replacing',],
