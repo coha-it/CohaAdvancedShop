@@ -141,7 +141,7 @@ x ExtraDetailsButton NewTab 0/1
         return new LessDefinition(
             [],
             [
-                // __DIR__ . '/Resources/views/frontend/_public/src/less/quoteslider.less',
+                __DIR__ . '/Resources/views/frontend/_public/src/less/advanced-shop.less',
             ]
         );
     }
