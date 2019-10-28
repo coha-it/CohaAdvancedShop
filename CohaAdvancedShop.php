@@ -38,9 +38,9 @@ x ExtraDetailsButton NewTab 0/1
     {
         // Return the Attributes as Array
         return [
-         // [ 'name' => 'coha_as_is_timeevent',                     'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Is Time-Event', 'helpText' => 'Check if this is a time-based event. For Example "(Termin/Ausbildung)"' ],
-            [ 'name' => 'coha_as_badge_termin',                     'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Termin "Badge"', ],
-            [ 'name' => 'coha_as_badge_ausbildung',                 'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Ausbildung "Badge"', ],
+        // [ 'name' => 'coha_as_is_timeevent',                     'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Is Time-Event', 'helpText' => 'Check if this is a time-based event. For Example "(Termin/Ausbildung)"' ],
+        // [ 'name' => 'coha_as_badge_termin',                     'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Termin "Badge"', ],
+        // [ 'name' => 'coha_as_badge_ausbildung',                 'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Ausbildung "Badge"', ],
             [ 'name' => 'coha_as_unbuyable',                        'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Article unbuyable', 'helpText' => 'If Active, the Product/Article is not buyable' ],
             [ 'name' => 'coha_as_listing_hide_prices',              'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Hide Prices (in Listing)', ],
             [ 'name' => 'coha_as_details_hide_prices',              'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Hide Prices (in Details)', ],
@@ -65,7 +65,7 @@ x ExtraDetailsButton NewTab 0/1
             [ 'name' => 'coha_as_details_removed_hidden',           'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Details-Button: removed/hidden', 'helpText' => 'If Active, the Cart button will be Removed / Hidden',],
             [ 'name' => 'coha_as_details_disabled',                 'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Details-Button: disabled', 'helpText' => 'If Active, the Cart button will be disabled',],
             [ 'name' => 'coha_as_details_custom_classes',           'type' => 'string',             'label' => '[COHA: Advanced Shop] Details-Button: custom classes', 'helpText' => 'Custom Classes for the Cart Button',],
-            [ 'name' => 'coha_as_test',                             'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Details-Button: disabled', 'helpText' => 'If Active, the Cart button will be disabled',],
+            // [ 'name' => 'coha_as_test',                             'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Details-Button: disabled', 'helpText' => 'If Active, the Cart button will be disabled',],
         ];
     }
 
@@ -83,13 +83,12 @@ x ExtraDetailsButton NewTab 0/1
             $aAttribute = $aAttributes[$i];
 
             // Collect Advanced Array
-            $aAdvanced = [];
+            $aAdvanced = $aAttribute;
             $aAdvanced['label']                     = $aAttribute['label'] ?? '';
             $aAdvanced['translatable']              = $aAttribute['translatable'] ?? true;
             $aAdvanced['displayInBackend']          = $aAttribute['displayInBackend'] ?? true;
-            $aAdvanced['helpText']                  = $aAttribute['helpText'] ?? true;
             $aAdvanced['custom']                    = $aAttribute['custom'] ?? true;
-            $aAdvanced['position']                  = ($i + 150);
+            $aAdvanced['position']                  = ($i + 75);
 
             $service->update(
                 's_articles_attributes',
