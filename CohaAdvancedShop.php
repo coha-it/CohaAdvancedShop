@@ -39,8 +39,6 @@ x ExtraDetailsButton NewTab 0/1
         // Return the Attributes as Array
         return [
         // [ 'name' => 'coha_as_is_timeevent',                     'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Is Time-Event', 'helpText' => 'Check if this is a time-based event. For Example "(Termin/Ausbildung)"' ],
-        // [ 'name' => 'coha_as_badge_termin',                     'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Termin "Badge"', ],
-        // [ 'name' => 'coha_as_badge_ausbildung',                 'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Ausbildung "Badge"', ],
             [ 'name' => 'coha_as_unbuyable',                        'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Article unbuyable', 'helpText' => 'If Active, the Product/Article is not buyable' ],
             [ 'name' => 'coha_as_listing_hide_prices',              'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Hide Prices (in Listing)', ],
             [ 'name' => 'coha_as_details_hide_prices',              'type' => 'boolean',            'label' => '[COHA: Advanced Shop] Hide Prices (in Details)', ],
