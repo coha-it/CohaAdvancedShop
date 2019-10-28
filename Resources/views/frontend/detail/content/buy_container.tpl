@@ -4,8 +4,6 @@
 {block name='frontend_detail_index_data'}
     {if !$sArticle.attributes.core->get('coha_as_details_hide_prices')}
         {$smarty.block.parent}
-    {else}
-        <div class="product--price-info"></div>
     {/if}
 {/block}
 

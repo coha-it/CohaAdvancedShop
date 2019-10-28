@@ -15,5 +15,7 @@
 {block name='frontend_listing_box_article_price_info'}
     {if !$sArticle.attributes.core->get('coha_as_listing_hide_prices')}
         {$smarty.block.parent}
+    {else}
+        <div class="product--price-info"></div>
     {/if}
 {/block}
