@@ -87,6 +87,7 @@ x ExtraDetailsButton NewTab 0/1
             $aAdvanced['label']                     = $aAttribute['label'] ?? '';
             $aAdvanced['translatable']              = $aAttribute['translatable'] ?? true;
             $aAdvanced['displayInBackend']          = $aAttribute['displayInBackend'] ?? true;
+            $aAdvanced['helpText']                  = $aAttribute['helpText'] ?? true;
             $aAdvanced['custom']                    = $aAttribute['custom'] ?? true;
             $aAdvanced['position']                  = ($i + 150);
 
