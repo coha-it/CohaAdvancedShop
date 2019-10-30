@@ -102,9 +102,27 @@ x ExtraDetailsButton NewTab 0/1
 
 
     public function update(UpdateContext $context) {
-        $service = $this->container->get('shopware_attribute.crud_service');
+        $service        = $this->container->get('shopware_attribute.crud_service');
+        $oldVersion     = $context->getCurrentVersion();
 
-        // $context->scheduleClearCache(ActivateContext::CACHE_LIST_ALL);
+        // Versions
+
+        // If you are 0.0.5 or Lower
+        if (version_compare($oldVersion, '0.0.5', '<=')) {
+            // Update to 0.0.6
+
+            $service->update('s_articles_attributes', 'coha_as_listing_to_article', 'boolean', [
+                'label' => '[COHA: Advanced Shop] Listing-Button: To Article',
+                'helpText' => 'If Checked: There will be no quick "Add to Cart" in listing. Instead there will be a "Details >"-Button which leads to the Article-Detail-Page.',
+                'translatable' => true,
+                'displayInBackend' => true,
+                'position' => 89,
+                'custom' => true,
+            ]);
+        }
+
+        // Cache Clear
+        $context->scheduleClearCache(ActivateContext::CACHE_LIST_ALL);
 
     }
 
